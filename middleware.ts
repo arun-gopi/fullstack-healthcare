@@ -13,7 +13,7 @@ export default clerkMiddleware(async (auth, req) => {
 
   const role =
     userId && sessionClaims?.metadata?.role
-      ? sessionClaims.metadata.role
+      ? sessionClaims.metadata.role.toLowerCase()
       : userId
       ? "patient"
       : "sign-in";
@@ -22,7 +22,7 @@ export default clerkMiddleware(async (auth, req) => {
 
   if (matchingRoute && !matchingRoute.allowedRoles.includes(role)) {
     // Redirect unauthorized roles to their respective default pages
-    return NextResponse.redirect(new URL(`/${role}`, url.origin));
+    return NextResponse.redirect(new URL(`/${role.toLowerCase()}`, url.origin));
   }
 
   // Continue if the user is authorized

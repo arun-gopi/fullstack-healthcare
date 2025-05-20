@@ -78,7 +78,7 @@ async function seed() {
 
   // Create 20 patients
   const patients = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 25; i++) {
     const patient = await prisma.patient.create({
       data: {
         id: faker.string.uuid(),
@@ -107,7 +107,7 @@ async function seed() {
   }
 
   // Create Appointments
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 300; i++) {
     const doctor = doctors[Math.floor(Math.random() * doctors.length)];
     const patient = patients[Math.floor(Math.random() * patients.length)];
 
